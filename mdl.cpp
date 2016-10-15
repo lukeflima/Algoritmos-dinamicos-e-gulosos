@@ -1,5 +1,6 @@
 #include "mdl.h"
 #include <iostream>
+#include <vector>
 
 int max(int a, int b){
 	return a>b? a:b;
@@ -23,4 +24,21 @@ int LCS(std::string s1, std::string s2){
 		}
 	}
 	return L[x][y];
+}
+
+bool SSP(std::vector<int> set, int sum){
+	int n = set.size();
+	bool subset[sum+1][n+1];
+
+	for(int i = 0; i <= n; ++i) subset[0][i] = true;
+
+	for(int i = 0; i <= sum; ++i) subset[i][0] = false;
+
+	for(int i = 1; i <= sum; ++i)
+		for(int j = 1; j <= n; ++j){
+			subset[i][j] = subset[i][j-1];
+			if(i >= set[j-1]) subset[i][j] = subset[i][j] || subset[i - set[j-1]][j-1];
+		}
+
+	return subset[sum][n];
 }
