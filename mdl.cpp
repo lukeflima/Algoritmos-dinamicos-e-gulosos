@@ -1,6 +1,6 @@
 #include "mdl.h"
 #include <iostream>
-#include <vector>
+
 
 int max(int a, int b){
 	return a>b? a:b;
