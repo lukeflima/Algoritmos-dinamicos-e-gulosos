@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 
-//---------------------------------- Pogramação dinamica --------------------------------------
+
 int max(int a, int b)
 {
 	return a>b? a:b;
@@ -74,7 +74,7 @@ int DDP(std::string str1, std::string str2)
     return dp[m][n];
 }
 
-//-------------------------------- Algoritmos gulosos ---------------------------------------------
+
 MinHeapNode* newNode(char data, unsigned freq)
 {
     MinHeapNode* temp = new MinHeapNode();
@@ -84,17 +84,17 @@ MinHeapNode* newNode(char data, unsigned freq)
     return temp;
 }
  
-// A utility function to create a min heap of given capacity
+
 MinHeap* createMinHeap(unsigned capacity)
 {
     MinHeap* minHeap = new MinHeap();
-    minHeap->size = 0;  // current size is 0
+    minHeap->size = 0;  
     minHeap->capacity = capacity;
     minHeap->array = new MinHeapNode*[minHeap->capacity];
     return minHeap;
 }
  
-// A utility function to swap two min heap nodes
+
 void swapMinHeapNode(MinHeapNode** a, MinHeapNode** b)
 {
     MinHeapNode* t = *a;
@@ -102,7 +102,7 @@ void swapMinHeapNode(MinHeapNode** a, MinHeapNode** b)
     *b = t;
 }
  
-// The standard minHeapify function.
+
 void minHeapify(MinHeap* minHeap, int idx)
 {
     int smallest = idx;
@@ -124,13 +124,13 @@ void minHeapify(MinHeap* minHeap, int idx)
     }
 }
  
-// A utility function to check if size of heap is 1 or not
+
 int isSizeOne(MinHeap* minHeap)
 {
     return (minHeap->size == 1);
 }
  
-// A standard function to extract minimum value node from heap
+
 MinHeapNode* extractMin(MinHeap* minHeap)
 {
     MinHeapNode* temp = minHeap->array[0];
@@ -140,7 +140,7 @@ MinHeapNode* extractMin(MinHeap* minHeap)
     return temp;
 }
  
-// A utility function to insert a new node to Min Heap
+
 void insertMinHeap(MinHeap* minHeap, MinHeapNode* minHeapNode)
 {
     ++minHeap->size;
@@ -153,7 +153,7 @@ void insertMinHeap(MinHeap* minHeap, MinHeapNode* minHeapNode)
     minHeap->array[i] = minHeapNode;
 }
  
-// A standard funvtion to build min heap
+
 void buildMinHeap(MinHeap* minHeap)
 {
     int n = minHeap->size - 1;
@@ -163,14 +163,14 @@ void buildMinHeap(MinHeap* minHeap)
 }
  
 
-// Utility function to check if this node is leaf
+
 int isLeaf(MinHeapNode* root)
 {
     return !(root->left) && !(root->right) ;
 }
  
-// Creates a min heap of capacity equal to size and inserts all character of 
-// data[] in min heap. Initially size of min heap is equal to capacity
+
+
 MinHeap* createAndBuildMinHeap(char data[], int freq[], int size)
 {
     MinHeap* minHeap = createMinHeap(size);
@@ -181,36 +181,36 @@ MinHeap* createAndBuildMinHeap(char data[], int freq[], int size)
     return minHeap;
 }
  
-// The main function that builds Huffman tree
+
 MinHeapNode* buildHuffmanTree(char data[], int freq[], int size)
 {
     MinHeapNode *left, *right, *top;
  
-    // Step 1: Create a min heap of capacity equal to size.  Initially, there are
-    // modes equal to size.
+    
+    
     MinHeap* minHeap = createAndBuildMinHeap(data, freq, size);
  
-    // Iterate while size of heap doesn't become 1
+    
     while (!isSizeOne(minHeap))
     {
-        // Step 2: Extract the two minimum freq items from min heap
+        
         left = extractMin(minHeap);
         right = extractMin(minHeap);
  
-        // Step 3:  Create a new internal node with frequency equal to the
-        // sum of the two nodes frequencies. Make the two extracted node as
-        // left and right children of this new node. Add this node to the min heap
-        // '$' is a special value for internal nodes, not used
+        
+        
+        
+        
         top = newNode('$', left->freq + right->freq);
         top->left = left;
         top->right = right;
         insertMinHeap(minHeap, top);
     }
  
-    // Step 4: The remaining node is the root node and the tree is complete.
+    
     return extractMin(minHeap);
 }
-// A utility function to print an array of size n
+
 void printArr(int arr[], int n)
 {
     int i;
@@ -218,45 +218,46 @@ void printArr(int arr[], int n)
         std::cout << arr[i];
     std::cout << std::endl;
 }
- 
+
+
 void printCodes(MinHeapNode* root, int arr[], int top)
 {
-    // Assign 0 to left edge and recur
+    
     if (root->left)
     {
         arr[top] = 0;
         printCodes(root->left, arr, top + 1);
     }
  
-    // Assign 1 to right edge and recur
+    
     if (root->right)
     {
         arr[top] = 1;
         printCodes(root->right, arr, top + 1);
     }
  
-    // If this is a leaf node, then it contains one of the input
-    // characters, print the character and its code from arr[]
+    
+    
     if (isLeaf(root))
     {
     	std::cout << root->data << ": ";
         printArr(arr, top);
     }
 }
- 
-// The main function that builds a Huffman Tree and print codes by traversing
-// the built Huffman Tree
+
+
+
 void HuffmanCodes(char data[], int freq[], int size)
 {
-   //  ConHuffman Tree
+   
    MinHeapNode* root = buildHuffmanTree(data, freq, size);
  
-   // Print Huffman codes using the Huffman tree built above
+   
    int arr[MAX_TREE_HT], top = 0;
    printCodes(root, arr, top);
 }
   
-//--------------------------------------------------------------------------
+
 Graph* createGraph(int V, int E)
 {
     Graph* graph = new Graph();
@@ -268,33 +269,33 @@ Graph* createGraph(int V, int E)
     return graph;
 }
  
-// A utility function to find set of an element i
-// (uses path compression technique)
+
+
 int find(subset subsets[], int i)
 {
-    // find root and make root as parent of i (path compression)
+    
     if (subsets[i].parent != i)
         subsets[i].parent = find(subsets, subsets[i].parent);
  
     return subsets[i].parent;
 }
  
-// A function that does union of two sets of x and y
-// (uses union by rank)
+
+
 void Union(subset subsets[], int x, int y)
 {
     int xroot = find(subsets, x);
     int yroot = find(subsets, y);
  
-    // Attach smaller rank tree under root of high rank tree
-    // (Union by Rank)
+    
+    
     if (subsets[xroot].rank < subsets[yroot].rank)
         subsets[xroot].parent = yroot;
     else if (subsets[xroot].rank > subsets[yroot].rank)
         subsets[yroot].parent = xroot;
  
-    // If ranks are same, then make one as root and increment
-    // its rank by one
+    
+    
     else
     {
         subsets[yroot].parent = xroot;
@@ -302,8 +303,8 @@ void Union(subset subsets[], int x, int y)
     }
 }
  
-// Compare two edges according to their weights.
-// Used in qsort() for sorting an array of edges
+
+
 int myComp(const void* a, const void* b)
 {
     Edge* a1 = (Edge*)a;
@@ -311,50 +312,48 @@ int myComp(const void* a, const void* b)
     return a1->weight > b1->weight;
 }
  
-// The main function to conMST using Kruskal's algorithm
+
 void KruskalMST(Graph* graph)
 {
     int V = graph->V;
-    Edge result[V];  // Tnis will store the resultant MST
-    int e = 0;  // An index variable, used for result[]
-    int i = 0;  // An index variable, used for sorted edges
+    Edge result[V];  
+    int e = 0;  
+    int i = 0;  
  
-    // Step 1:  Sort all the edges in non-decreasing order of their weight
-    // If we are not allowed to change the given graph, we can create a copy of
-    // array of edges
+   
     qsort(graph->edge, graph->E, sizeof(graph->edge[0]), myComp);
  
-    // Allocate memory for creating V ssubsets
+    
     subset *subsets = new subset[V];
  
-    // Create V subsets with single elements
+    
     for (int v = 0; v < V; ++v)
     {
         subsets[v].parent = v;
         subsets[v].rank = 0;
     }
  
-    // Number of edges to be taken is equal to V-1
+    
     while (e < V - 1)
     {
-        // Step 2: Pick the smallest edge. And increment the index
-        // for next iteration
+        
+        
         Edge next_edge = graph->edge[i++];
  
         int x = find(subsets, next_edge.src);
         int y = find(subsets, next_edge.dest);
  
-        // If including this edge does't cause cycle, include it
-        // in result and increment the index of result for next edge
+        
+        
         if (x != y)
         {
             result[e++] = next_edge;
             Union(subsets, x, y);
         }
-        // Else discard the next_edge
+        
     }
  
-    // print the contents of result[] to display the built MST
+    
     std::cout << "Following are the edges in the cond MST\n";
     for (i = 0; i < e; ++i)
     	std::cout << result[i].src << " -- " << result[i].dest << " == " << result[i].weight << std::endl;
