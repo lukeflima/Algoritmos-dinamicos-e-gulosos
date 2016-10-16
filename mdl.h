@@ -43,7 +43,10 @@ Parametros: Strings a serem comparadas.
 int DDP(std::string, std::string);
 
 //--------------- Algoritmos gulosos ------------------
-
+/*
+Aluno: Lucas Ferreira Lima - 11406537
+Huffman Coding
+*/
 
 typedef struct MinHeapNode
 {
@@ -96,5 +99,52 @@ MinHeap* createAndBuildMinHeap(char data[], int freq[], int size);
 MinHeapNode* buildHuffmanTree(char data[], int freq[], int size);
 
 void HuffmanCodes(char data[], int freq[], int size);
+
+void printCodes(MinHeapNode* root, int arr[], int top);
+
+void printArr(int arr[], int n);
+//----------------------------------------------------------------------------------------------
+/*
+Aluno: Lucas Ferreira Lima - 11406537
+Kruskal MST
+*/
+
+// a structure to represent a weighted edge in graph
+typedef struct Edge
+{
+    int src, dest, weight;
+} Edge;
+ 
+// a structure to represent a connected, undirected and weighted graph
+typedef struct Graph
+{
+    // V-> Number of vertices, E-> Number of edges
+    int V, E;
+ 
+    // graph is represented as an array of edges. Since the graph is
+    // undirected, the edge from src to dest is also edge from dest
+    // to src. Both are counted as 1 edge here.
+    Edge* edge;
+} Graph;
+
+typedef struct subset
+{
+    int parent;
+    int rank;
+} subset;
+
+// Creates a graph with V vertices and E edges
+Graph* createGraph(int V, int E);
+
+// A function that does union of two sets of x and y
+// (uses union by rank)
+void Union(subset subsets[], int x, int y);
+
+// Compare two edges according to their weights.
+// Used in qsort() for sorting an array of edges
+int myComp(const void* a, const void* b);
+
+// The main function to construct MST using Kruskal's algorithm
+void KruskalMST(Graph* graph);
 
 #endif //__MDL_H_
