@@ -1,30 +1,30 @@
-# Biblioteca de otimizacao.
-#### Alunos: Lucas Lima - 11406537 -|- Diego Patrício - 11425394 -|- Marilia Soares - 11413590
+# Algoritmos dinamicos e gulosos
 
 ## Designados algoritmos
-### Lucas Lima
+
+
 #### Gulosos
 Árvore geradora mínima (Algoritmo de Kruskal)  
-Compressão de dados (Código de Huffman)  
+Árvore geradora mínima (Algoritmo de Prim)  
+Compressão de dados (Código de Huffman)
+Caminho mais curto (Algoritmo de Dijkstra)  
+Mochila fracionária  
+Coloração de grafos  
+
 #### Dinâmicos
 Maior subsequência comum  
 Soma de subconjunto  
 Distância de edição  
-
-### Diego Patrício
-#### Gulosos
-Caminho mais curto (Algoritmo de Dijkstra)  
-Árvore geradora mínima (Algoritmo de Prim)  
-#### Dinâmicos
 Empilhamento de caixas  
 Caminho mais curto  
-Quebra de palavras  
-
-### Marilia Soares
-#### Gulosos
-Mochila fracionária  
-Coloração de grafos  
-#### Dinâmicos
+Quebra de palavras 
 Triângulo de Pascal  
 Troco em moedas  
 Mochila binária  
+
+
+
+#### Autores
+Lucas Lima 
+Diego Patrício - [GitHub](https://github.com/diegoalexandre115)
+Marilia Soares - [GitHub](https://github.com/Marilia1)
