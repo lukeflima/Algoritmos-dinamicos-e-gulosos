@@ -25,7 +25,8 @@ Mochila binária
 
 
 #### Autores
-Lucas Lima 
+Lucas Lima - [GitHub](https://github.com/lukeflima)
+
 Diego Patrício - [GitHub](https://github.com/diegoalexandre115)
 
 Marilia Soares - [GitHub](https://github.com/Marilia1)
